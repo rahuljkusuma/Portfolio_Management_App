@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block heading %} Equity Holdings {% endblock %}
+
+
+{% block content %}
+
+<!-- {% for instance in object_list %}
+
+    <p>{{ instance.id }} - <a href="{{ instance.get_absolute_url }}">{{ instance.name }} - {{ instance.quantity }} - {{ instance.buy_price }} - {{ instance.qty_price_mul }}</a></p>
+
+{% endfor %} -->
+
+
+{% load index %}
+
+
+<div class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-auto me-auto">
+        <a class="btn btn-secondary btn-sm" tabindex="-1" role="button" aria-disabled="true" href="{% url 'dashboard:portfolio' %}">Portfolio</a>
+      </div>
+      <div class="col-auto">
+        <a class="btn btn-secondary btn-sm" tabindex="-1" role="button" aria-disabled="true" href="{% url 'portfolio:stock_create_view' %}">Add Stocks</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Avg Buying Price</th>
+      <th scope="col">Total Invested</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in range %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>
+        {% for k, v in urls.items %}
+          {% if fname|index:i == k %}
+          <p><a class="dropdown-item" href="{{ v }}">{{ k }}</a></p>
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>{{ fqty|index:i }}</td>
+      <td>{{ fbp|index:i|floatformat:2 }}</td>
+      <td>{{ fttl|index:i|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+
+
+{% endblock %}
+
+
+
+{% comment %}
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Avg Buying Price</th>
+      <th scope="col">Total Invested</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in range %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ fname|index:i }}</td>
+      <td>{{ fqty|index:i }}</td>
+      <td>{{ fbp|index:i|floatformat:2 }}</td>
+      <td>{{ fttl|index:i|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table> 
+
+
+
+{% for i in range %}
+  {% if fname|index:i in urls.keys %}
+    <p><a href="{{ urls.values }}">{{ fname|index:i }}</a></p>
+  {% endif %}
+{% endfor %}
+
+
+{% for i, j in urls.items %}
+<p><a href="{{ j }}">{{ i }}</a></p>
+{% endfor %}
+
+{% for i in urls %}
+<p>{{ i }}</p>
+{% endfor %}
+
+
+
+{% endcomment %}

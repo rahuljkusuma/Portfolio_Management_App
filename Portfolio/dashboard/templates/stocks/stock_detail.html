@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block heading %} 
+
+{{ first_stock_name.name }} Details
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-auto me-auto">
+        <a class="btn btn-secondary btn-sm" tabindex="-1" role="button" aria-disabled="true" href="{% url 'dashboard:portfolio' %}">Portfolio</a>
+      </div>
+      <div class="col-auto">
+        <a class="btn btn-secondary btn-sm" tabindex="-1" role="button" aria-disabled="true" href="{% url 'portfolio:stock_list_view' %}">Equity</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Buying Price</th>
+        <th scope="col">Avg Buying Price</th>
+        <th scope="col">Buying Date</th>
+        <th scope="col">Updated Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in single_stock %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ i.name }}</td>
+        <td>{{ i.quantity }}</td>
+        <td>{{ i.buy_price|floatformat:2 }}</td>
+        <td>{% widthratio i.quantity 1 i.buy_price %}</td>
+        <td>{{ i.buy_date }}</td>
+        <td>{{ i.updated }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h1>In App template: {{ object.title }}</h1>
+<p>{% if object.description != None and object.description != '' %}{{ object.description }}{% else %}Description is coming soon{% endif %}</p> -->
+
+{% comment %} <h3>{{ object.name }}</h3>
+<p>Quantity: {{ object.quantity }}</p>
+<p>Average Buying Price: {{ object.buy_price }}</p>
+<p>Invested Value: {% widthratio object.quantity 1 object.buy_price %}</p> {% endcomment %}
+
+
+{% comment %} <h3>{{ object.name }}</h3>
+<p>Quantity: {{ object.quantity }}</p> {% endcomment %}
+
+{% comment %} {% for i in newli %}
+
+<p>{{ i.name }} - {{ i.quantity }} - {{ i.buy_price }} - {% widthratio i.quantity 1 i.buy_price %} - {{ i.buy_date }}</p>
+
+{% endfor %} {% endcomment %}

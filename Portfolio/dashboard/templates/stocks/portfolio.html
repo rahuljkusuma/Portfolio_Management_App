@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block heading %} Portfolio {% endblock %}
+
+
+{% block content %}
+
+<p><a href="">Gold Holding</a> Need to add total equity holding</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <a class="dropdown-item" href="{% url 'portfolio:stock_list_view' %}">Equity Holding : {{ equity_sum }}</a> 
+    </div>
+    <div class="col-md-4 offset-md-4">
+        <a class="btn btn-secondary btn-sm" tabindex="-1" role="button" aria-disabled="true" href="{% url 'portfolio:stock_create_view' %}">Add Stocks</a>
+    </div>
+</div>
+
+{% endblock %}
