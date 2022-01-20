@@ -13,6 +13,16 @@ class Stock(models.Model):
     buy_date = models.DateField()
     updated = models.DateField(auto_now_add=True)
     slug = models.SlugField(null=True, blank=True)
+    DisplayFields = ['name', 'quantity', 'buy_price', 'total', 'buy_date', 'updated']
+    SearchableFields = ['name']
+
+    class Meta:
+        db_table = 'STOCKS'
+
+    @property
+    def total(self):
+        total = self.quantity * self.buy_price
+        return total
         
 
     def sum_of_total(self):
