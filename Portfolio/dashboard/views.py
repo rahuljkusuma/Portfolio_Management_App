@@ -6,6 +6,7 @@ from .forms import StockAddForm
 
 from pandas import Series, DataFrame
 import pandas as pd
+from nsetools import Nse
 
 # Create your views here.
 
@@ -24,9 +25,17 @@ def stock_create_view(request):
     if form.is_valid():
         form.save()
         form = StockAddForm()
+
+    stocks_dictionary = Nse().get_stock_codes()
+    stock_names_list = list(Nse().get_stock_codes().values())
+    
+    
     context = {
-        'form' : form
+        'form' : form,
+        'stock_names_list' : stock_names_list,
+        'stocks_dictionary' : stocks_dictionary
     }
+
     return render(request,"stocks/stock_create.html",context)
 
 

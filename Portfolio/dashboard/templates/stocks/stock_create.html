@@ -16,10 +16,34 @@
     </div>
 </div>
 <br>
+
+
+
 <form action="." method="POST"> {% csrf_token %}
-    <!-- <input type="text" name="title" placeholder="Your title">  -->
-    {{ form.as_p }}
-    <input class="btn btn-secondary btn-sm" tabindex="-1" role="button" aria-disabled="true" type="submit" value="Add">
+
+  {% for i in form %}
+    <div class="row mb-3 justify-content-center">
+      <label for="colFormLabel" class="col-sm-2 col-form-label">{{ i.label }}</label>
+      <div class="col-sm-6">
+        {{ i }}
+        <datalist id="datalistOptions">
+          {% for i in stock_names_list %}
+            <option value="{{ i }}">
+          {% endfor %}
+        </datalist>    
+      </div>
+    </div>
+  {% endfor %}
+
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-4">
+      <input class="btn btn-secondary btn-sm col-6" tabindex="-1" role="button" aria-disabled="true" type="submit" value="Add">
+    </div>
+    </div>
+  </div>
+
 </form>
 
 
