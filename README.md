@@ -1,0 +1,3 @@
+# Portfolio_Management_App
+For a fund management company we have developed a web application. In this web application, fund managers can manage their client’s funds. Different types of charts give the best demonstration of data and fund allocation. Every client can login and analyse their returns. In this application we have included analysis of equity/stock market returns, cryptocurrency returns, gold trading returns and USA equity/stock market returns.
+My Role: Writing Web Scraping codes, studying the NSE API(API for Indian stock market), dashboard designing, development of validation code, unit testing for written code, debugging, client communication.
